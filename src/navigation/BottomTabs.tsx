@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeStack from './HomeStack';
-import SearchScreen from '../screens/SearchScreen';
+import SearchStack from './SearchStack';
 import NotificationsScreen from '../screens/NotificationsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { useNavigationContext } from '../context/NavigationContext';
@@ -18,7 +18,7 @@ const screens = [
   },
   {
     name: 'Search',
-    component: SearchScreen,
+    component: SearchStack,
     title: 'Search',
     icon: 'magnify',
   },

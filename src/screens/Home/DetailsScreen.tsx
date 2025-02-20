@@ -7,7 +7,7 @@ import { Product } from '../../components/ProductCard';
 
 type RootStackParamList = {
   Home: undefined;
-  Details: { productId: string };
+  Details: { productId: string; fromSearch?: boolean };
   Profile: undefined;
 };
 
@@ -17,7 +17,7 @@ type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
 const DetailsScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<DetailsScreenRouteProp>();
-  const { productId } = route.params;
+  const { productId, fromSearch } = route.params;
 
   const product = PRODUCTS.find((p: Product) => p.id === productId);
 
@@ -70,12 +70,14 @@ const DetailsScreen = () => {
         </View>
       </ScrollView>
 
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.backButtonText}>← Back to Products</Text>
-      </TouchableOpacity>
+      {!fromSearch && (
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.backButtonText}>← Back to Products</Text>
+        </TouchableOpacity>
+      )}
     </SafeAreaView>
   );
 };
