@@ -1,0 +1,17 @@
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+android {
+    defaultConfig {
+        // ... existing code ...
+    }
+    buildTypes {
+        // ... existing code ...
+    }
+    
+    project.ext.vectoricons = [
+        iconFontNames: [ 'MaterialCommunityIcons.ttf' ]
+    ]
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+} 
