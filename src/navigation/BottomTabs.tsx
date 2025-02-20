@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 const screens = [
   {
-    name: 'HomeStack',
+    name: 'Home',
     component: HomeStack,
     title: 'Home'
   },
