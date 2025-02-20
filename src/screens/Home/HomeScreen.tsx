@@ -1,5 +1,5 @@
-import { View, StyleSheet, FlatList, SafeAreaView } from 'react-native';
-import React from 'react';
+import { View, StyleSheet, FlatList, SafeAreaView, RefreshControl } from 'react-native';
+import React, { useState, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import ProductCard, { Product } from '../../components/ProductCard';
@@ -63,6 +63,15 @@ export const PRODUCTS: Product[] = [
 
 const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    // Simulate a data fetch
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000); // 2 seconds delay
+  }, []);
 
   const handleProductPress = (productId: string) => {
     navigation.navigate('Details', { productId });
@@ -84,6 +93,15 @@ const HomeScreen = () => {
         numColumns={2}
         contentContainerStyle={styles.productList}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#e41e31"
+            colors={['#e41e31']}
+            progressBackgroundColor="#fff"
+          />
+        }
       />
     </SafeAreaView>
   );
